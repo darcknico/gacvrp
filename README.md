@@ -20,3 +20,14 @@ Para aclarar la representacion del ruteo como cromosoma. Para cada cromosoma pue
 ### Generacion de la Poblacion inicial
 Los individuos de la poblacion son generados de forma aleatoria y a continuacion son son modificados para forzar que representen soluciones validas al problema.
 ### Operador de Cruze
+El operador de cruce utilizado es generic crossover. Este operador tiene la principal caracteristica de promover de una forma omportante la diversidad en la poblacion.
+### Mutacion
+La mutacion esta compuesta por cuatro tipos de mutaciones distintas que se aplican con diferentes probabilidades (solo) se aplica una de ellas en cada caso). El uso de estos cuatro operadores de mutacion nos permite modificar el itinerario de una ruta mover clientes entre rutas, y añadir o eliminar rutas, al igual que sucede con el operador de cruce utilizado. Estos operadores son:
+#### Intercambio
+Consiste en intercambiar la posicion de dos clientes(pertenecientes a la misma ruta o no) elegidos aleatoriamente.
+#### Inversion
+Invierte el orden de visita de los clientes que se encuentran entre dos clientes elegidos aleatoriamente. En este caso, todos los clientes deben pertenecer a la misma ruta.
+#### Dispersion
+Es similar al operador de insercion, pero aplicado a una sub-ruta (conjunto de clientes) en lugar de un unico cliente.
+### Busqueda Local (instancias mayores a 500)
+El metodo de busqueda consiste en aplicar hasta 50 pasos de busqueda por 1 intercambio, y despues se aplican hasta 50 pasos de 2-opt a cada ruta de la solucion obtenida tras 1 intercambio. El metodo de 1 intercambio consiste en intercambiar un cliente de una ruta por otro perteneciente a otra ruta, o insertar un cliente de una ruta en otra ruta distinta. Por otro lado. 2-opt trabaja siempre dentro de cada ruta, y consiste en eliminar de dos ejes de una ruta y conectar los clientes en la otra forma posible. Como estos dos metodos de busqueda local son deterministas, la busqueda para en el caso de que no se haya logrado mejorar la solucion en un paso del algoritmo. Esto nos permitira reducir considerablemente el tiempo de ejecucion.
